@@ -8,7 +8,7 @@ def parse(filename):
     with open(filename, 'r') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in spamreader:
-            pos_set.add(row[1].lower())
+            pos_set.add(row[0].lower())
 
     pos_set = list(pos_set)
     return pos_set
@@ -55,7 +55,6 @@ def final_review(testVecs):
 if __name__ == "__main__":
     # parse('adjectives.csv')
     # label_for_train()
-    testArr, testVecs = test_reviews('adverbs.csv')
-    final_review(testVecs)
-    # sio.savemat('testAdv.mat', {'testAdv':testArr})
-    # print testVecs
+    testArr, testVecs = test_reviews('data/concatenated_adjectives.csv')
+    # final_review(testVecs)
+    sio.savemat('testConcat.mat', {'testConcat':testArr})

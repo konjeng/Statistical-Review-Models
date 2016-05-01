@@ -36,8 +36,8 @@ def test_reviews(filename):
 
 def main():
     # get data
-    data = sio.loadmat('adverbs.mat')
-    X = data['advData']
+    data = sio.loadmat('concatenated_adjectives.mat')
+    X = data['conData']
 
     # get labels
     labels = sio.loadmat('labels.mat')
@@ -52,10 +52,10 @@ def main():
     nbClassifier = NaiveBayes()
     # fit model
     nbClassifier.train(X_train, y_train)
-    joblib.dump(nbClassifier.clf, 'nb_adv.pkl')
+    joblib.dump(nbClassifier.clf, 'nb_concat.pkl')
     # get accuracy
-    nbClassifier.score(X_test, y_test)
-    print nbClassifier.accuracy
+    # nbClassifier.score(X_test, y_test)
+    # print nbClassifier.accuracy
     # clf = joblib.load("ADV Pickle Files/nb_adv.pkl")
     # testData = sio.loadmat('testAdv.mat')
     # X_train = testData['testAdv']

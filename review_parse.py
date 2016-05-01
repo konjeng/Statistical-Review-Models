@@ -7,7 +7,7 @@ def parse(filename):
     with open(filename, 'r') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in spamreader:
-            pos_set.add(row[1].lower())
+            pos_set.add(row[0].lower())
 
     pos_set = list(pos_set)
     # print pos_set
@@ -22,7 +22,7 @@ def review_parse(filename):
     with open(filename, 'r') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in spamreader:
-            sentence_id = int(row[3])-1
+            sentence_id = int(row[0])-1
             word = row[1]
             final_word = word[1:len(word)-1].lower()
             pos = final_word
@@ -45,6 +45,5 @@ def review_parse(filename):
     return final_review
 
 if __name__ == "__main__":
-    pos_arr = review_parse('adjectives.csv')
-    sio.savemat('concatenated_adjectives.mat', {'conData': pos_arr})
-    # pos_arr = parse('concatenated_adjectives.csv')
+    # pos_arr = review_parse('concatenated_adjectives.csv')
+    # sio.savemat('concatenated_adjectives.mat', {'conData': pos_arr})

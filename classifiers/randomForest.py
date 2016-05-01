@@ -23,29 +23,29 @@ class RandomForest():
 
 def main():
     # get data
-    # data = sio.loadmat('adverbs.mat')
-    # X = data['advData']
+    data = sio.loadmat('concatenated_adjectives.mat')
+    X = data['conData']
+
+    # get labels
+    labels = sio.loadmat('labels.mat')
+    y = labels['labelData']
+    y = y.T
     #
-    # # get labels
-    # labels = sio.loadmat('labels.mat')
-    # y = labels['labelData']
-    # y = y.T
-    #
-    # # X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.33,random_state=42)
-    # X_train = X
-    # y_train = y
-    #
-    # # forest
-    # rfClassifier = RandomForest()
-    # # fit model
-    # rfClassifier.train(X, y)
-    # joblib.dump(rfClassifier.rf, 'rf_adv.pkl')
+
+    X_train = X
+    y_train = y
+
+    # forest
+    rfClassifier = RandomForest()
+    # fit model
+    rfClassifier.train(X, y)
+    joblib.dump(rfClassifier.rf, 'rf_concat.pkl')
     # get accuracy
-    clf = joblib.load("ADV Pickle Files/rf_adv.pkl")
-    testData = sio.loadmat('testAdv.mat')
-    X_train = testData['testAdv']
-    testOut = clf.predict(X_train)
-    sio.savemat('rfOut_adv.mat', {'rfOut':testOut})
+    # clf = joblib.load("ADV Pickle Files/rf_adv.pkl")
+    # testData = sio.loadmat('testAdv.mat')
+    # X_train = testData['testAdv']
+    # testOut = clf.predict(X_train)
+    # sio.savemat('rfOut_adv.mat', {'rfOut':testOut})
 
 if __name__=="__main__":
     main()
